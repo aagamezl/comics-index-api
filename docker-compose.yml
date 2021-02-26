@@ -1,0 +1,17 @@
+version: '3.8'
+services:
+  comics-index-api:
+    container_name: comics-index-api
+    restart: on-failure
+    volumes:
+      - '/etc/localtime:/etc/localtime:ro'
+      - .:/usr/src/app
+      - 'node_modules:/app/node_modules'
+    build:
+      dockerfile: Dockerfile
+      context: .
+    ports:
+      - '4000:4000'
+      - 9229:9229
+volumes:
+  node_modules: null

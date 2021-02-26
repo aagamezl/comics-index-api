@@ -1,0 +1,14 @@
+FROM node:14.16.0
+
+# Create Directory for the Container
+WORKDIR /app
+COPY . .
+
+# Run npm and install modules
+RUN npm i
+
+# Expose application port
+EXPOSE 4000
+
+# Run start command
+CMD ["npm", "run", "start:dev"]

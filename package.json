@@ -1,0 +1,65 @@
+{
+  "name": "comics-index-api",
+  "version": "1.0.0",
+  "description": "",
+  "main": "build/index.js",
+  "types": "build/index.d.ts",
+  "scripts": {
+    "build": "tsc -p tsconfig.json",
+    "build:watch": "npm run build -- -w",
+    "clean": "rm -rf dist",
+    "lint": "ts-standard -p ./tsconfig.json",
+    "lint:fix": "ts-standard --fix",
+    "start": "npm run migration:run && node .",
+    "start:dev": "ts-node-dev --respawn --inspect=0.0.0.0:9229 src/index.ts",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "husky": {
+    "hooks": {
+      "commit-msg": "commitlint -E HUSKY_GIT_PARAMS"
+    }
+  },
+  "ts-standard": {
+    "ignore": [
+      "build/**/*",
+      "temp/**/*"
+    ]
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/aagamezl/comics-index-api.git"
+  },
+  "keywords": [
+    "GraphQL",
+    "TypeScript",
+    "TypeGraphQL",
+    "TypeORM"
+  ],
+  "author": "Álvaro José Agámez Licha",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/aagamezl/comics-index-api/issues"
+  },
+  "homepage": "https://github.com/aagamezl/comics-index-api#readme",
+  "dependencies": {
+    "apollo-server": "^2.21.0",
+    "class-validator": "^0.13.1",
+    "graphql": "^15.5.0",
+    "pg": "^8.5.1",
+    "pg-hstore": "^2.3.3",
+    "reflect-metadata": "^0.1.13",
+    "type-graphql": "^1.1.1",
+    "typeorm": "^0.2.31"
+  },
+  "devDependencies": {
+    "@commitlint/cli": "^12.0.0",
+    "@commitlint/config-conventional": "^12.0.0",
+    "@commitlint/format": "^12.0.0",
+    "@types/graphql": "^14.5.0",
+    "@types/node": "^14.14.31",
+    "husky": "^5.1.1",
+    "ts-node-dev": "^1.1.6",
+    "ts-standard": "^10.0.0",
+    "typescript": "^4.2.2"
+  }
+}

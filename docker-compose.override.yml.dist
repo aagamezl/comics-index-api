@@ -1,0 +1,49 @@
+version: '3.8'
+services:
+  postgres:
+    image: 'postgres:13.2-alpine'
+    container_name: your-app-postgres
+    restart: on-failure
+    ports:
+      - "5432:5432"
+    volumes:
+      - './temp/postgres/data:/var/lib/postgresql/data'
+    environment:
+      - POSTGRES_DB=your_postgres_database
+      - POSTGRES_USER=your_postgres_user
+      - POSTGRES_PASSWORD=your_postgres_password
+  comics-index-api:
+    volumes:
+      - .:/app
+    build:
+      dockerfile: Dockerfile.dev
+    links:
+      - postgres
+    environment:
+      - NODE_ENV=development
+      - PORT=4000
+
+      - DATABASE_TYPE=postgres
+      - DATABASE_HOST=postgres
+      - DATABASE_PORT=5432
+      - DATABASE_USERNAME=your_postgres_user
+      - DATABASE_PASSWORD=your_postgres_password
+      - DATABASE_NAME=your_postgres_database
+
+      - ORM_ENTITIES_PATH=src/modules/**/*Entity.ts
+      - ORM_MIGRATIONS_PATH=src/migration/**/*.ts
+      - ORM_MIGRATIONS_DIR=src/migration
+      - ORM_SUBSCRIBERS_PATH=src/subscriber/**/*.ts
+      - ORM_SUBSCRIBERS_DIR=src/subscriber
+
+      - TOKEN_SECRET=your_token_secret
+      - TOKEN_LIFE=86400
+
+      - SMTP_HOST=smtp.ethereal.email
+      - SMTP_PORT=587
+      - SMTP_SECURE=false
+      - SMTP_USER=
+      - SMTP_PASSWORD=
+
+volumes:
+  node_modules:
