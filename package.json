@@ -10,14 +10,23 @@
     "clean": "rm -rf dist",
     "lint": "ts-standard -p ./tsconfig.json",
     "lint:fix": "ts-standard --fix",
+    "prepare": "husky install",
+    "release": "standard-version",
     "start": "npm run migration:run && node .",
     "start:dev": "ts-node-dev --respawn --inspect=0.0.0.0:9229 src/index.ts",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "ava",
+    "test:watch": "ava --watch"
   },
-  "husky": {
-    "hooks": {
-      "commit-msg": "commitlint -E HUSKY_GIT_PARAMS"
-    }
+  "ava": {
+    "files": [
+      "!temp"
+    ],
+    "extensions": [
+      "ts"
+    ],
+    "require": [
+      "ts-node/register"
+    ]
   },
   "ts-standard": {
     "ignore": [
@@ -42,24 +51,27 @@
   },
   "homepage": "https://github.com/aagamezl/comics-index-api#readme",
   "dependencies": {
-    "apollo-server": "^2.21.0",
+    "apollo-server": "^3.3.0",
+    "apollo-server-core": "^3.3.0",
     "class-validator": "^0.13.1",
-    "graphql": "^15.5.0",
-    "pg": "^8.5.1",
-    "pg-hstore": "^2.3.3",
+    "graphql": "^15.6.0",
+    "pg": "^8.7.1",
+    "pg-hstore": "^2.3.4",
     "reflect-metadata": "^0.1.13",
     "type-graphql": "^1.1.1",
-    "typeorm": "^0.2.31"
+    "typeorm": "^0.2.37"
   },
   "devDependencies": {
-    "@commitlint/cli": "^12.0.0",
-    "@commitlint/config-conventional": "^12.0.0",
-    "@commitlint/format": "^12.0.0",
-    "@types/graphql": "^14.5.0",
-    "@types/node": "^14.14.31",
-    "husky": "^5.1.1",
-    "ts-node-dev": "^1.1.6",
+    "@commitlint/cli": "^13.2.0",
+    "@commitlint/config-conventional": "^13.2.0",
+    "@commitlint/format": "^13.2.0",
+    "@types/node": "^16.10.2",
+    "ava": "^3.15.0",
+    "husky": "^7.0.0",
+    "sinon": "^11.1.2",
+    "standard-version": "^9.3.1",
+    "ts-node-dev": "^1.1.8",
     "ts-standard": "^10.0.0",
-    "typescript": "^4.2.2"
+    "typescript": "^4.4.3"
   }
 }

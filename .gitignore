@@ -105,5 +105,5 @@ dist
 
 temp
 docker-compose.override.yml
-src/__snapshots__
+__snapshots__
 build

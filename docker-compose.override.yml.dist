@@ -1,7 +1,7 @@
-version: '3.8'
+version: '3.9'
 services:
   postgres:
-    image: 'postgres:13.2-alpine'
+    image: 'postgres:13.4-alpine'
     container_name: your-app-postgres
     restart: on-failure
     ports:
@@ -17,6 +17,8 @@ services:
       - .:/app
     build:
       dockerfile: Dockerfile.dev
+    ports:
+      - '9229:9229'
     links:
       - postgres
     environment:
@@ -38,12 +40,6 @@ services:
 
       - TOKEN_SECRET=your_token_secret
       - TOKEN_LIFE=86400
-
-      - SMTP_HOST=smtp.ethereal.email
-      - SMTP_PORT=587
-      - SMTP_SECURE=false
-      - SMTP_USER=
-      - SMTP_PASSWORD=
 
 volumes:
   node_modules:
