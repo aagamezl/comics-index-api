@@ -1,7 +1,7 @@
 import { Field, ObjectType } from 'type-graphql'
 
 @ObjectType()
-export class Recipe {
+export class Comic {
   @Field()
   title: string
 
